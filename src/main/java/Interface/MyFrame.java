@@ -5,13 +5,13 @@ import java.awt.*;
 public class MyFrame extends JFrame {
 
     public MyFrame() {
-      this.setSize(500, 500);
+      this.setSize(400,400);
       this.setTitle("Horoskopas");
       this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       this.setVisible(true);
-      this.setBackground(Color.GRAY);
+      this.setBackground(Color.decode("#f4f4f4"));
       this.setLayout(new BorderLayout());
-      ImageIcon logo = new ImageIcon("/src/main/zodiak-logo.png");
+      ImageIcon logo = new ImageIcon("./src/main/java/zodiak-logo.png");
       this.setIconImage(logo.getImage());
 
    }

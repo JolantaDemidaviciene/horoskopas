@@ -23,7 +23,23 @@ public class horoskopasDemo {
         panel.add(menuo);
         panel.add(diena);
         frame.getContentPane().add(BorderLayout.NORTH, panel);
-        
+
+        JButton find = new JButton("Find");
+        JButton clear = new JButton("Clear");
+        JPanel panelButton = new JPanel();
+        panelButton.add(find);
+        panelButton.add(clear);
+
+        frame.getContentPane().add(BorderLayout.SOUTH,panelButton);
+
+        JLabel atsakymo = new JLabel();
+        atsakymo.setSize(300,300);
+        atsakymo.setText("Paieskos rezultatas");
+        atsakymo.setBackground(Color.red);
+        frame.getContentPane().add(BorderLayout.CENTER,atsakymo);
+
+
+
     }
 
 }
