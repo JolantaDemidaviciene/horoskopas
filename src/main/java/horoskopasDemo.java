@@ -6,27 +6,47 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.jar.JarInputStream;
 
 public class horoskopasDemo {
 
     public static void main (String[] args) {
 
         MyFrame frame = new MyFrame();
+        frame.setLayout(new GridLayout(3,1));
         JTextField metai = new JTextField(10);
-        metai.setBounds(0, 0, 100, 50);
-      
         JTextField menuo = new JTextField(10);
-        menuo.setBounds(150, 0, 100, 50);
-
         JTextField diena = new JTextField(10);
-        diena.setBounds(300, 0, 100, 50);
-
 
         JPanel panel = new JPanel();
         panel.add(metai);
         panel.add(menuo);
         panel.add(diena);
-        frame.getContentPane().add(BorderLayout.NORTH, panel);
+        frame.getContentPane().add(panel);
+
+        JPanel centr = new JPanel();
+        JLabel zodiakas = new JLabel();
+        JLabel dabarmetu = new JLabel();
+        JLabel ikigimtadienio = new JLabel();
+        JLabel savaitesdiena = new JLabel();
+        JLabel tekstas = new JLabel();
+        zodiakas.setText("<Zodiako zenklas>");
+        dabarmetu.setText("<Dabartinis amzius>");
+        ikigimtadienio.setText("IKi gimtadienio liko <dienu skaicius>");
+        savaitesdiena.setText("Kai gimete buvo <savaites diena>");
+        tekstas.setText("<horoskopas");
+        centr.add(zodiakas, BorderLayout.LINE_END);
+        centr.add(dabarmetu, BorderLayout.AFTER_LINE_ENDS);
+        centr.add(ikigimtadienio);
+        centr.add(savaitesdiena);
+        centr.add(tekstas);
+
+        frame.getContentPane().add(centr);
+
+
+
+
+
 
         JButton find = new JButton("Find");
         JButton clear = new JButton("Clear");
@@ -34,13 +54,9 @@ public class horoskopasDemo {
         panelButton.add(find);
         panelButton.add(clear);
 
-        frame.getContentPane().add(BorderLayout.SOUTH,panelButton);
+        frame.getContentPane().add(panelButton);
 
-        JLabel atsakymo = new JLabel();
-        atsakymo.setSize(300,300);
-        atsakymo.setText("Paieskos rezultatas");
-        atsakymo.setBackground(Color.red);
-        frame.getContentPane().add(BorderLayout.CENTER,atsakymo);
+
 
        find.addActionListener(new ActionListener() {
             @Override
@@ -48,7 +64,7 @@ public class horoskopasDemo {
                 String metaid= metai.getText();
                 String menuod= menuo.getText();
                 String dienad = diena.getText();
-               atsakymo.setText(metaid + "-"+ menuod +"-"+dienad);
+               //atsakymo.setText(metaid + "-"+ menuod +"-"+dienad);
             }
         });
        clear.addActionListener(new ActionListener() {
