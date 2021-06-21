@@ -13,9 +13,7 @@ import java.time.Period;
 import java.util.ArrayList;
 import Enum.EHoroskop;
 
-
-import static Helpers.Helper.Findhoroskop;
-import static Helpers.Helper.ikiGimtadienio;
+import static Helpers.Helper.*;
 
 
 public class horoskopasDemo {
@@ -29,7 +27,7 @@ public class horoskopasDemo {
             new horoskopas(6,22,7,22,EHoroskop.Vėžys,"Savo energiją nukreipkite į darbą, mokslą ar kūrybą, o ne į tuščius ginčus, ambicijų demonstravimą. Nuo to priklausys, kaip pakryps pokalbis, turėsiantis įtakos jūsų autoritetui.");
             new horoskopas(7,23,8,23,EHoroskop.Liūtas,"Aiškės finansinės perspektyvos, galėsite numatyti, kaip racionaliau panaudoti turimas lėšas. Regis, jums kils ūpas šį bei tą nusipirkti, atsinaujinti. O galbūt rūpinsitės dovana kažkam, kas jums išties rūpi.");
             new horoskopas(8,24,9,23, EHoroskop.Mergelė,"Tai gali būti naujų galimybių diena, kai po ilgų pastangų ims ryškėti perspektyvos. Viskas taip trapu, kad lengva sugadinti. Saugokitės klastų, vagysčių, apsinuodijimo.");
-            new horoskopas(9,24,10,23,EHoroskop.Svarstyklės, " ");
+            new horoskopas(9,24,10,23,EHoroskop.Svarstyklės, "Gana neutrali diena – kaip pasiklosite, taip išsimiegosite. Nelabai tiktų imtis intensyvios veiklos. Pasisaugokite, kad dėl alkoholio ar netinkamų produktų, vaistų vartojimo nekiltų problemų.");
             new horoskopas(10,24,11,22,EHoroskop.Skorpionas,"Šiandien teigiamai veiksite aplinkinius ir jie – jus. Žadinsite draugiškumo bei solidarumo jausmus. Verta pamėginti atnaujinti jums svarbius santykius, jeigu jie neseniai patyrė krizę.");
             new horoskopas(11,23,12,22,EHoroskop.Šaulys,"Jeigu būtina, šiandien tvarkykite dokumentus, kreipkitės į valdžią dėl leidimų, oficialių raštų, patvirtinimų, atsiskaitymų. Bus nelengva, tačiau naudokitės tomis progomis, kurios įmanomos.");
             new horoskopas(12,23,1,20,EHoroskop.Ožiaragis,"Šiandien ypač aktualūs gali būti su išsilavinimu, studijomis, įstatymais, kelionėmis susiję reikalai. Galbūt nustebins kolega ar pažįstamas iš užsienio.");
@@ -50,7 +48,7 @@ public class horoskopasDemo {
         panel.add(diena);
         JLabel pranesimas = new JLabel();
         panel.add(pranesimas);
-        frame.getContentPane().add(panel);
+
 
         JPanel centr = new JPanel();
         JLabel zodiakas = new JLabel();
@@ -70,15 +68,26 @@ public class horoskopasDemo {
         centr.add(savaitesdiena);
         centr.add(tekstas);
 
-        frame.getContentPane().add(centr);
+
         JButton find = new JButton("Find");
         find.setBackground(Color.BLUE);
         JButton clear = new JButton("Clear");
         JPanel panelButton = new JPanel();
         panelButton.add(find);
         panelButton.add(clear);
-
+        frame.getContentPane().add(panel);
+        frame.getContentPane().add(centr);
         frame.getContentPane().add(panelButton);
+        find.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                zodiakas.setText(Findhoroskop(Integer.parseInt(metai.getText()),Integer.parseInt(menuo.getText(),Integer.parseInt(diena.getText()))).toString());
+                dabarmetu.setText("Siuo metu Jums " + Kiekmetu(Integer.parseInt(metai.getText()),Integer.parseInt(menuo.getText()),Integer.parseInt(diena.getText())));
+                ikigimtadienio.setText("Iki gimtadienio Jums liko " + IkiGimtadienio(Integer.parseInt(metai.getText()),Integer.parseInt(menuo.getText()),Integer.parseInt(diena.getText())));
+                savaitesdiena.setText("Kai gimėte buvo " + Savaitesdiena(Integer.parseInt(metai.getText()),Integer.parseInt(menuo.getText()),Integer.parseInt(diena.getText())));
+
+            }
+        });
 
 
 

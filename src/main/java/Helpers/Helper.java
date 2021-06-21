@@ -73,7 +73,7 @@ public class Helper {
         return s;
     }
 
-    public static void ikiGimtadienio(int metai, int menuo, int diena){
+    public static long IkiGimtadienio(int metai, int menuo, int diena){
 
         LocalDate gimtadienis = LocalDate.of(metai, menuo, diena);
 
@@ -85,15 +85,16 @@ public class Helper {
 
         Period p = Period.between(LocalDate.now(),sekantisgimtadienis);
         long p2 = ChronoUnit.DAYS.between(LocalDate.now(), sekantisgimtadienis);
-        System.out.println("Sekantis gimtadienis ivyks po " + p2 + " dienų.");
+
+        return p2;
     }
 
-    public static void Savaitesdiena(int metai, int menuo, int diena){
-        System.out.println("Kai gimete buvo " + DayOfWeek.from(LocalDate.of(metai,menuo,diena)).name());
+    public static String Savaitesdiena(int metai, int menuo, int diena){
+       return DayOfWeek.from(LocalDate.of(metai,menuo,diena)).name();
     }
 
-    public static void Kiekmetu(int metai, int menuo, int diena){
-        System.out.println(Math.abs(Period.between(LocalDate.now(),LocalDate.of(metai,menuo,diena)).getYears()));
+    public static int Kiekmetu(int metai, int menuo, int diena){
+        return Math.abs(Period.between(LocalDate.now(),LocalDate.of(metai,menuo,diena)).getYears());
     }
 
 }
