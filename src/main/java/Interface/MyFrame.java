@@ -5,7 +5,7 @@ import java.awt.*;
 public class MyFrame extends JFrame {
 
     public MyFrame() {
-      this.setSize(600,400);
+      this.setSize(600,600);
       this.setTitle("Horoskopas");
       this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       this.setVisible(true);
