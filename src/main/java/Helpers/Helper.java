@@ -64,7 +64,6 @@ public class Helper {
         for (horoskopas m : x) {
             if ( m.getPavadinimas().toString().equals(a)==true) {
                 prognoze = m.getPrognoze();
-                System.out.println(m.getPrognoze());
             }
         }
         return prognoze;
@@ -73,7 +72,7 @@ public class Helper {
     public static Boolean MetuTikrinimas(int metai, JLabel pranesimas, JTextField metailaukas){
         int metaidabar = LocalDate.now().getYear();
         if(metai <= LocalDate.now().getYear() != true){
-            pranesimas.setText("Blogai įvesti gimimo metai");
+            pranesimas.setText("Blogai įvesti duomenys");
             pranesimas.setForeground(Color.RED);
             metailaukas.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.red));
             return false;

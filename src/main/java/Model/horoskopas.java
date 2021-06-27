@@ -18,17 +18,10 @@ public class horoskopas {
         return pavadinimas;
     }
 
-    public void setPavadinimas(EHoroskop pavadinimas) {
-        this.pavadinimas = pavadinimas;
-    }
-
     public String getPrognoze() {
         return this.prognoze;
     }
 
-    public void setPrognoze(String prognoze) {
-        this.prognoze = prognoze;
-    }
 //#endregion
 
     public static ArrayList<horoskopas> Duomenys(){

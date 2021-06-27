@@ -13,7 +13,6 @@ public class MyFrame extends JFrame {
       this.setLayout(new BorderLayout());
       ImageIcon logo = new ImageIcon("./src/main/java/zodiak-logo.png");
       this.setIconImage(logo.getImage());
-
-   }
+    }
 }
 

@@ -1,12 +1,16 @@
 import Interface.MyFrame;
 import Interface.MyLabel;
+import Interface.TabbedDemo;
 import Model.horoskopas;
 
 import javax.swing.*;
+import javax.swing.plaf.TabbedPaneUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.annotation.Target;
 import java.time.DateTimeException;
+import java.util.zip.DataFormatException;
 
 import static Helpers.Helper.*;
 
@@ -16,23 +20,25 @@ public class horoskopasDemo {
     public static void main (String[] args) {
 
         MyFrame frame = new MyFrame();
-        frame.setLayout(new GridLayout(3,1));
+        JTextArea logasset = new JTextArea(200,200);
 
         //#region pirmoji JPanel
         JPanel pirmoji = new JPanel();
-        pirmoji.setLayout(new GridLayout(2,1));
+        pirmoji.setLayout(new GridLayout(3,1));
         JPanel pirmoji1 = new JPanel();
         JPanel pirmoji2 = new JPanel();
+        JPanel pirmoji3 = new JPanel();
         JTextField metai = new JTextField(10);
         JTextField menuo = new JTextField(10);
         JTextField diena = new JTextField(10);
         JLabel klaidospr = new  JLabel();
-        pirmoji1.add(metai);
-        pirmoji1.add(menuo);
-        pirmoji1.add(diena);
-        pirmoji2.add(klaidospr, BorderLayout.CENTER);
+        pirmoji2.add(metai);
+        pirmoji2.add(menuo);
+        pirmoji2.add(diena);
+        pirmoji3.add(klaidospr, BorderLayout.CENTER);
         pirmoji.add(pirmoji1);
         pirmoji.add(pirmoji2);
+        pirmoji.add(pirmoji3);
         //#endregion
 
         //#region antroji JPanel
@@ -67,13 +73,23 @@ public class horoskopasDemo {
         find.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                try {
                     if (MetuTikrinimas(Integer.parseInt(metai.getText()), klaidospr, metai)) {
                         zodiakas.setText(Findhoroskop(Integer.parseInt(menuo.getText()), Integer.parseInt(diena.getText())).toString());
                         dabarmetu.setText("Siuo metu Jums " + Kiekmetu(Integer.parseInt(metai.getText()), Integer.parseInt(menuo.getText()), Integer.parseInt(diena.getText())));
                         ikigimtadienio.setText("Iki gimtadienio Jums liko " + IkiGimtadienio(Integer.parseInt(metai.getText()), Integer.parseInt(menuo.getText()), Integer.parseInt(diena.getText())));
                         savaitesdiena.setText("Kai gimėte buvo " + Savaitesdiena(Integer.parseInt(metai.getText()), Integer.parseInt(menuo.getText()), Integer.parseInt(diena.getText())));
                         tekstas.setText(Prognoze(horoskopas.Duomenys(), Findhoroskop(Integer.parseInt(menuo.getText()), Integer.parseInt(diena.getText()))));
+                        logasset.append(metai.getText() + " " + menuo.getText() + " " + diena.getText() + "\n");
+
                     }
+                }
+                catch (DateTimeException ed){
+                    throw ;
+                }
+                catch (NullPointerException en){
+                    en.getMessage();
+                }
 
             }
         });
@@ -96,10 +112,19 @@ public class horoskopasDemo {
 
         //#endregion
 
-        frame.getContentPane().add(pirmoji);
-        frame.getContentPane().add(centr);
-        frame.getContentPane().add(apatine);
+        JPanel svarbiausia = new JPanel();
+        svarbiausia.setLayout(new GridLayout(3,1));
+        svarbiausia.add(pirmoji);
+        svarbiausia.add(centr);
+        svarbiausia.add(apatine);
+
+
+        JTabbedPane tabai = new JTabbedPane();
+        tabai.addTab("Horoskopai", svarbiausia);
+        tabai.addTab("Logas", logasset);
+        frame.add(tabai);
         frame.setVisible(true);
+
 
 
 
